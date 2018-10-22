@@ -31,6 +31,7 @@
 ```
 У них много встроенных функций:
 
+
 ```py
     'hello  '.strip()  # 'hello'
     'hello world'.upper()  # 'HELLO WORLD'
