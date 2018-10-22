@@ -6,14 +6,12 @@
 
 Раньше в C++ итерация по коллекции проходила так:
 
-
 ```cpp
     for(int i = 0; i < books_amount; i++) {
         cout << books[i];
     }
 ```
 Этот же способ используется в других языках. Поэтому на Питоне хочется написать так же:
-
 
 ```py
     for i in len(books):
@@ -39,13 +37,11 @@
 ```
 Это тоже неудобная дичь, древность и вообще. Для этого есть встроенная функция `enumerate`:
 
-
 ```py
     for book_number, book in enumerate(books):
         print(book_number, book)
 ```
 Делай правильно и не делай неправильно.
-
 
 
 ### Используй None
@@ -110,9 +106,7 @@
 
 Упростить можно так:
 
-
 ```py
-
     def load_json_data(filepath):
         if not os.path.exists(filepath):
             return None
