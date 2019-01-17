@@ -16,13 +16,13 @@
     :::python
     import csv
     import json
-    
-    
+
+
     def load_from_json(filepath):
         with open(filepath, 'r') as file_handler:
             return json.load(file_handler)
-    
-    
+
+
     def load_from_csv(filepath):
         with open(filepath, 'r') as file_handler:
             return list(csv.reader(file_handler))
@@ -31,16 +31,16 @@
 
     :::python
     from data_loaders import load_from_csv  # импортируем функцию из модуля
-    
-    
+
+
     print(load_from_csv('bars.csv')
 
 А можно так:
 
     :::python
     import data_loaders  # импортируем модуль целиком
-    
-    
+
+
     print(data_loaders.load_from_csv('bars.csv')  # используем функцию с указанием модуля
 
 Есть ещё вариант `from data_loaders import *`, но он вне закона. Забудьте о нём.
@@ -54,8 +54,8 @@
 
     :::python
     import json
-    
-    
+
+
     def load_from_json(filepath):
         with open(filepath, 'r') as file_handler:
             return json.load(file_handler)
@@ -72,8 +72,8 @@
 
     :::python
     import json
-    
-    
+
+
     def load_from_json(filepath):
         with open(filepath, 'r') as file_handler:
             return json.load(file_handler)
@@ -100,7 +100,7 @@
     :::python
     # bars.py
     import data_loaders
-    
+
     # data_loaders.py
     import bars
 
@@ -111,10 +111,10 @@
     :::python
     # bars.py
     import data_loaders
-    
+
     # data_loaders.py
     import helpers
-    
+
     # helpers.py
     import bars
 
@@ -127,8 +127,14 @@
 
 ###Как работает под капотом
 
+
 Важнее всего знать, как Питон выбирает файлы для импорта. Сначала он ищет подходящие файлы в рабочей директории,
 рядом с `bars.py`. Если не находит, то проходит по папкам в `sys.path` и ищет нужный файл.
+
+Иногда бывает так, что нужный модуль находится вне тех папок, которые обходит Питон. Один из вариантов побороть это
+ – вручную добавить нужный путь в `sys.path` (это список). Но это на крайний случай, обычно есть более красивые способы.
+Например, упаковать код в модуль и установить его с помощью pip. Так что тсс, я вам ничего не говорил.
+
 
 В памяти все загруженные модули хранятся в `sys.modules`. Иногда встречаются случаи, когда файла нет, а модуль есть.
 Это не сложно устроить:
@@ -136,19 +142,19 @@
     # mod.py
     import sys
     from types import ModuleType
-    
-    
+
+
     dynamic_module = ModuleType(__name__)
     dynamic_module.x = 5
-    
+
     sys.modules['some_weird_module'] = dynamic_module
 
 
     # script.py
     import mod  # тут выполнился код из mod.py
     import some_weird_module  # модуль есть, а файла – нет
-    
-    
+
+
     print(some_weird_module.x)  # 5
 
 
