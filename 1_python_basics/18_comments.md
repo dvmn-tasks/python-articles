@@ -94,11 +94,3 @@
   или `FIXME: учитывать часовой пояс`.
 
 Прежде чем написать комментарий, попробуй поселить его в коде, указав параметр или дав подходящее название переменной.
-
-
-## Что изучать
-
-- [Доклад Григория Петрова про комментирование исходников](https://www.youtube.com/watch?v=-SRUctRR_4s). Обязателен к просмотру.
-- [PEP 257](https://www.python.org/dev/peps/pep-0257/). ПЕП про докстринги.
-- [doctest](https://docs.python.org/3.5/library/doctest.html). Документация к модулю про доктесты.
-- [What is the best comment in source code you have ever encountered?](http://stackoverflow.com/questions/184618/). Шутить в коде не стоит, а вот посмеяться с чужих шуток можно. Это ж не нам поддерживать.
