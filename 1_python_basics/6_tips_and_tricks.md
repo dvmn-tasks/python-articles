@@ -5,26 +5,28 @@
 
 Раньше в C++ итерация по коллекции проходила так:
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
     :::cpp
-
-```cpp
-
-
     for(int i = 0; i < books_amount; i++) {
         cout << books[i];
     }
-```
 
 Этот же способ используется в других языках. Поэтому на Питоне хочется написать так же:
 
+<<<<<<< HEAD
 
 
 
     :::python
 
 
+=======
+    :::python
+>>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
     for i in len(books):
         print(books[i])
 
@@ -36,21 +38,34 @@
 
 Часто вместе с элементом нужен его номер. Памятуя, что можно итерировать по коллекции, хочется сделать как-то так:
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
     :::python
     i = 0 
     for book in books:
         print(i, book)
         i += 1
+<<<<<<< HEAD
+
+Это тоже неудобная дичь, древность и вообще. Для этого есть встроенная функция `enumerate`:
+=======
+>>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
 
 Это тоже неудобная дичь, древность и вообще. Для этого есть встроенная функция `enumerate`:
 
-
     :::python
+<<<<<<< HEAD
 
     for book_number, book in enumerate(books):
         print(book_number, book)
         
+=======
+    for book_number, book in enumerate(books):
+        print(book_number, book)
+
+>>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
 Делай правильно и не делай неправильно.
 
 
@@ -62,7 +77,6 @@
 В этом случае переменную с данными нужно чем-то заполнить, но со смыслом, типа, "тут ничего нет".
 
 Для "ничего" в Питоне есть `None`. Не пустая строка и не -1, а именно `None`:
-
 
     :::python
     try:
@@ -81,15 +95,21 @@
 
 Загрузим json из файла:
 
-
     :::python
+<<<<<<< HEAD
 
     def load_json_data(filepath):
         with open(filepath, 'r') as file_handler:
             return json.load(file_handler)
 
 Всё сломается, если передать путь до несуществующего файла. Исправим:
+=======
+    def load_json_data(filepath):
+        with open(filepath, 'r') as file_handler:
+            return json.load(file_handler)
+>>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
 
+Всё сломается, если передать путь до несуществующего файла. Исправим:
 
     :::python
     def load_json_data(filepath):
@@ -103,9 +123,11 @@
  функции смысла нет.
 Избавляемся от `else`:
 
-
     :::python
+<<<<<<< HEAD
     
+=======
+>>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
     def load_json_data(filepath):
         if os.path.exists(filepath):
             with open(filepath, 'r') as file_handler:
@@ -117,9 +139,11 @@
 
 Упростить можно так:
 
-
     :::python
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
     def load_json_data(filepath):
         if not os.path.exists(filepath):
             return None
@@ -133,27 +157,38 @@
 Часто в коде приходится проверять переменные на нулевые значения.
 Например, пустой список:
 
-
     :::python
     if len(users) == 0:
         pass
+<<<<<<< HEAD
 
 Или пустая строка:
+=======
+>>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
 
+Или пустая строка:
 
     :::python
     if user.email == '':
         pass
+<<<<<<< HEAD
 
 Или ноль:
+=======
+>>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
 
+Или ноль:
 
     :::python
     if user.level == 0:
         pass
+<<<<<<< HEAD
 
 Все три примера выше – неверные. Вот их верные аналоги:
+=======
+>>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
 
+Все три примера выше – неверные. Вот их верные аналоги:
 
     :::python
     if not users:
@@ -203,21 +238,12 @@
 у всех давно есть автокомплит.
 - **на английском**: никаких `kniga` или `polsovatel`. Брр.
 
-
 - **грамотными**: не поленись открыть переводчик и гугл, чтобы подобрать правильный перевод. Неправильный перевод
 создаёт ощущение неряшливости, а может и смыслу навредить – тогда о читаемости не может быть и речи.
 
 
 - **уникальными**: в Питоне есть [встроенные функции](https://docs.python.org/3.5/library/functions.html),
 называть переменные их именами нельзя: тогда функция станет недоступна. Среди них есть file, dict, all, str.
-
-
-- **уникальными**: в Питоне есть [встроенные функции](https://docs.python.org/3.5/library/functions.html),
-называть переменные их именами нельзя: тогда функция станет недоступна. Среди них есть file, dict, all, str.
-
-- **грамотными**: не поленись открыть переводчик и гугл, чтобы подобрать правильный перевод. Неправильный перевод
-создаёт ощущение неряшливости, а может и смыслу навредить – тогда о читаемости не может быть и речи.
-
 
 
 ### Больше функций
@@ -226,9 +252,11 @@
 
 Понятным – это когда с первого взгляда понятно, что он делает:
 
-
     :::python
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
     credentials = load_oauth_credentials_from_file('fb_creds.json')
     fb_api = get_facebook_api(credentials)
     messages = fb_api.get_unread_messages()
