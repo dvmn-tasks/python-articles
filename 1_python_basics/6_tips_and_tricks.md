@@ -12,7 +12,9 @@
 
 Этот же способ используется в других языках. Поэтому на Питоне хочется написать так же:
 
+
     :::python
+
     for i in len(books):
         print(books[i])
 
@@ -30,11 +32,13 @@
         print(i, book)
         i += 1
 
+
 Это тоже неудобная дичь, древность и вообще. Для этого есть встроенная функция `enumerate`:
 
     :::python
     for book_number, book in enumerate(books):
         print(book_number, book)
+
 
 Делай правильно и не делай неправильно.
 
@@ -66,9 +70,8 @@
 Загрузим json из файла:
 
     :::python
-    def load_json_data(filepath):
-        with open(filepath, 'r') as file_handler:
-            return json.load(file_handler)
+
+
 
 Всё сломается, если передать путь до несуществующего файла. Исправим:
 
@@ -85,6 +88,7 @@
 Избавляемся от `else`:
 
     :::python
+
     def load_json_data(filepath):
         if os.path.exists(filepath):
             with open(filepath, 'r') as file_handler:
@@ -97,6 +101,7 @@
 Упростить можно так:
 
     :::python
+
     def load_json_data(filepath):
         if not os.path.exists(filepath):
             return None
@@ -114,17 +119,20 @@
     if len(users) == 0:
         pass
 
+
 Или пустая строка:
 
     :::python
     if user.email == '':
         pass
 
+
 Или ноль:
 
     :::python
     if user.level == 0:
         pass
+
 
 Все три примера выше – неверные. Вот их верные аналоги:
 
@@ -191,6 +199,7 @@
 Понятным – это когда с первого взгляда понятно, что он делает:
 
     :::python
+
     credentials = load_oauth_credentials_from_file('fb_creds.json')
     fb_api = get_facebook_api(credentials)
     messages = fb_api.get_unread_messages()
