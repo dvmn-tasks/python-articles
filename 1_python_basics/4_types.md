@@ -28,13 +28,9 @@
 
 Ещё строки можно форматировать, причём несколькими способами. Вот один из них:
 
-<<<<<<< HEAD
 
-```python
-
-=======
     :::python
->>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
+
     name = 'Пётр'
     height = 1.865
     print('Привет, %s! Твой рост – %.2f м.' % (name, height))
@@ -59,10 +55,9 @@
 Часто бывает надо взять исходный список и сформировать из него новый, применив к каждому элементу исходного
 какое-то преобразование и как-то отфильтровав. Например, так:
 
-<<<<<<< HEAD
-=======
+
     :::python
->>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
+
     values = [1, 2, 3, 4, 5]
     new_values = []
     for value in values:
@@ -73,10 +68,9 @@
  
 Эта операция настолько частая, что для неё есть отдельная конструкция – list comprehension. Выглядит она так:
 
-<<<<<<< HEAD
-=======
+
     :::python
->>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
+
     values = [1, 2, 3, 4, 5]
     new_values = [value ** 2 for value in values if value % 2]
 
@@ -87,20 +81,18 @@
 
 Словарь – это отображение одних элементов в другие. Первые называют ключами, вторые – значениями.
 
-<<<<<<< HEAD
-=======
+
     :::python
->>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
+
     user_info = {'name': 'Иван', 'level': 2}
     print(user_info['name'])  # Иван
 
 
 Из словаря можно удалять, менять и добавлять в него элементы:
 
-<<<<<<< HEAD
-=======
+
     :::python
->>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
+
     user_info = {'name': 'Иван', 'level': 2}
     user_info['middle_name'] = 'Иванович'
     user_info['name'] = 'Грирогий'
@@ -113,10 +105,9 @@
 Ещё у словарей есть несколько важных методов: `keys`, `values` и `items`. Первый возвращает список только ключей, 
 второй – список только значений, третий – список пар из ключей и значений. Удобно при итерации по словарю:
 
-<<<<<<< HEAD
-=======
+
     :::python
->>>>>>> parent of eaf2743 (Merge branch 'master' of https://github.com/pafnootiy/python-articles)
+
     user_info = {'name': 'Иван', 'level': 2}
     for key, value in user_info.items():
         print '%s: %s' % (key, value)
