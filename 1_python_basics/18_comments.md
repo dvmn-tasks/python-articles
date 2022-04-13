@@ -4,9 +4,9 @@
 
 Комментарии – способ прокомментировать код на ходу, на той же строке. 
 
-    :::python
-    price = Column(BigInteger)  # рубли * 100
-
+```python
+price = Column(BigInteger)  # рубли * 100
+```
 
 ### Докстринги
 
@@ -14,15 +14,15 @@
 Она нужна для документирования всей функции: описания входящих параметров, результата, логики, крайних случаев.
 Заключается в тройные двойные кавычки. Вот так:
 
-    :::python
-    def tensorsolve(a, b, axes=None):
-        """
-        Solve the tensor equation ``a x = b`` for x.
-        It is assumed that all indices of `x` are summed over in the product,
-        together with the rightmost indices of `a`, as is done in, for example,
-        ``tensordot(a, x, axes=len(b.shape))``.
-        """
-
+ ```python
+def tensorsolve(a, b, axes=None):
+    """
+    Solve the tensor equation ``a x = b`` for x.
+    It is assumed that all indices of `x` are summed over in the product,
+    together with the rightmost indices of `a`, as is done in, for example,
+	``tensordot(a, x, axes=len(b.shape))``.
+    """
+```
 В серьёзных проектах из них часто генерируется документация, поэтому они могут быть большими, по несколько экранов.
 Это касается проектов, у которых есть документация для разработчиков: Django, numpy, sqlalchemy.
 
@@ -42,31 +42,34 @@
 В таком случае комментарий не несёт дополнительной информации, а просто переводит соседний код
 с Питона на русский/английский. Пример:
 
-    :::python
-    # загружаем данные из файла data.json
-    with open('users.json', 'r') as handler:
-        data = json.load(handler)
+```python
+# загружаем данные из файла data.json
+with open('users.json', 'r') as handler:
+    data = json.load(handler)
+```
 
 Вот как можно исправить:
 
-    :::python
-    with open('users.json', 'r') as handler:
-        data = json.load(handler)
+```python
+with open('users.json', 'r') as handler:
+    data = json.load(handler)
+```
 
 А так – ещё лучше:
 
-    :::python
-    data = load_all_users_from_file()
-
+```python
+data = load_all_users_from_file()
+```
 
 ### Не сопровождать комментарии
 
 Другая частая ошибка: не менять комментарии при изменении кода. В примере выше мы загружали данные из файла. 
 Через месяц взялись за голову и поселили данные в базе данных. Код стал таким:
 
-    :::python
-    # загружаем данные из файла data.json
-    data = db_session.query(User).all()
+```python
+# загружаем данные из файла data.json
+data = db_session.query(User).all()
+```
 
 Данные из файла? WAT?
 
@@ -77,8 +80,9 @@
 В таком состоянии всё поведение кажется понятным, поэтому разработчик может оставить комментарий самому себе.
 Проблема в том, что когда он переключится на другую задачу и забудет про детали, комментарий может взорвать мозг:
 
-    :::python
-    inv(strain_tensor) - rigidity.T  # правый случай
+```python
+inv(strain_tensor) - rigidity.T  # правый случай
+```
 
 Правый, правда? Ну, теперь всё понятно.
 
