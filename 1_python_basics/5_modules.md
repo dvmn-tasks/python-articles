@@ -15,38 +15,35 @@
 
 Предположим, что есть папка `3_bars`, в ней файл `data_loaders.py` с таким содержанием:
 
-```python
-import csv
-import json
+    :::python
+    import csv
+    import json
     
     
-def load_from_json(filepath):
-    with open(filepath, 'r') as file_handler:
-    return json.load(file_handler)
-
+    def load_from_json(filepath):
+        with open(filepath, 'r') as file_handler:
+            return json.load(file_handler)
     
-def load_from_csv(filepath):
-    with open(filepath, 'r') as file_handler:
-        return list(csv.reader(file_handler))
-```
+    
+    def load_from_csv(filepath):
+        with open(filepath, 'r') as file_handler:
+            return list(csv.reader(file_handler))
 
 А рядом есть файл `bars.py`, в котором мы хотим загрузить данные из csv. Вот что в нём можно написать:
 
-```python
-from data_loaders import load_from_csv  # импортируем функцию из модуля
+    :::python
+    from data_loaders import load_from_csv  # импортируем функцию из модуля
     
-
-print(load_from_csv('bars.csv')
-```
+    
+    print(load_from_csv('bars.csv')
 
 А можно так:
 
-```python
-import data_loaders  # импортируем модуль целиком
-
+    :::python
+    import data_loaders  # импортируем модуль целиком
     
-print(data_loaders.load_from_csv('bars.csv')  # используем функцию с указанием модуля
-```
+    
+    print(data_loaders.load_from_csv('bars.csv')  # используем функцию с указанием модуля
 
 Есть ещё вариант `from data_loaders import *`, но он вне закона. Забудьте о нём.
 
@@ -57,17 +54,17 @@ print(data_loaders.load_from_csv('bars.csv')  # используем функц�
 если в нём есть код, он будет выполнен. Даже если это не просто объявления функций, а их вызов. Представим,
 что когда мы писали код в `data_loaders.py`, мы его дебажили. Например, так:
 
-```python
-import json
+    :::python
+    import json
     
     
-def load_from_json(filepath):
-    with open(filepath, 'r') as file_handler:
-        return json.load(file_handler)
+    def load_from_json(filepath):
+        with open(filepath, 'r') as file_handler:
+            return json.load(file_handler)
 
 
-print(load_from_json('test.json'))
-```
+    print(load_from_json('test.json'))
+
 
 Теперь если мы импортируем этот модуль (`import data_loaders`), девятая строка выполнится, файл загрузится и выведется
 на экран. А ведь в `bars.py` это не нужно! Можно этот код удалить, но тогда будет неудобно дорабатывать функцию
@@ -75,18 +72,17 @@ print(load_from_json('test.json'))
 
 Вот правильный способ это обойти:
 
-```python
-import json
+    :::python
+    import json
     
     
-def load_from_json(filepath):
-    with open(filepath, 'r') as file_handler:
-        return json.load(file_handler)
+    def load_from_json(filepath):
+        with open(filepath, 'r') as file_handler:
+            return json.load(file_handler)
 
 
-if __name__ == '__main__':
-    print(load_from_json('test.json'))
-```
+    if __name__ == '__main__':
+        print(load_from_json('test.json'))
 
 Иф на девятой строке значит "выполняй меня только если файл запущен напрямую, а не импортирован".
 Теперь при запуске `python data_loaders.py` будет выполняться дебажная загрузка кода, а
@@ -103,28 +99,26 @@ if __name__ == '__main__':
 Главный подводный камень – рекурсивный импорт. Это если мы импортируем `data_loaders` из `bars`, а для `data_loaders`
 нужен `bars`. Вот так:
 
-```python
-# bars.py
-import data_loaders
+    :::python
+    # bars.py
+    import data_loaders
     
-data_loaders.py
-import bars
-```
+    # data_loaders.py
+    import bars
 
 Бах! Всё сломается при запуске.
 
 Иногда бывает ещё веселее: когда импорты замыкаются в трёх и более файлах. Типа того:
 
-```python
-# bars.py
-import data_loaders
+    :::python
+    # bars.py
+    import data_loaders
     
-# data_loaders.py
-import helpers
+    # data_loaders.py
+    import helpers
     
-# helpers.py
-import bars
-```
+    # helpers.py
+    import bars
 
 Всё сломается так же, как в примере выше, но ещё и заставит поломать голову при починке.
 
@@ -145,24 +139,24 @@ import bars
 В памяти все загруженные модули хранятся в `sys.modules`. Иногда встречаются случаи, когда файла нет, а модуль есть.
 Это не сложно устроить:
 
-```python
-# mod.py
-import sys
-from types import ModuleType
+    :::python
+    # mod.py
+    import sys
+    from types import ModuleType
     
     
-dynamic_module = ModuleType(__name__)
-dynamic_module.x = 5
+    dynamic_module = ModuleType(__name__)
+    dynamic_module.x = 5
     
-sys.modules['some_weird_module'] = dynamic_module
+    sys.modules['some_weird_module'] = dynamic_module
 
 
-# script.py
-import mod  # тут выполнился код из mod.py
-import some_weird_module  # модуль есть, а файла – нет
+    # script.py
+    import mod  # тут выполнился код из mod.py
+    import some_weird_module  # модуль есть, а файла – нет
     
     
-print(some_weird_module.x)  # 5
-```
+    print(some_weird_module.x)  # 5
+
 
 Делать так незаконно: это неочевидно, затрудняет отладку и вредит читаемости. Не надо так.
