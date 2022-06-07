@@ -5,7 +5,7 @@
 
 Раньше в C++ итерация по коллекции проходила так:
 
-    :::cpp
+    :::cpp 
     for(int i = 0; i < books_amount; i++) {
         cout << books[i];
     }
