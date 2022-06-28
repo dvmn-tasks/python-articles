@@ -6,7 +6,7 @@
 
 ```python
     price = Column(BigInteger)  # рубли * 100
-    ```
+```
 
 
 ### Докстринги
@@ -23,7 +23,7 @@
         together with the rightmost indices of `a`, as is done in, for example,
         ``tensordot(a, x, axes=len(b.shape))``.
         """
-    ```
+```
 
 В серьёзных проектах из них часто генерируется документация, поэтому они могут быть большими, по несколько экранов.
 Это касается проектов, у которых есть документация для разработчиков: Django, numpy, sqlalchemy.
@@ -48,20 +48,20 @@
     # загружаем данные из файла data.json
     with open('users.json', 'r') as handler:
         data = json.load(handler)
-    ```
+```
 
 Вот как можно исправить:
 
 ```python
     with open('users.json', 'r') as handler:
         data = json.load(handler)
-    ```
+```
 
 А так – ещё лучше:
 
-    ```python
+```python
     data = load_all_users_from_file()
-    ```
+```
 
 
 ### Не сопровождать комментарии
@@ -72,7 +72,7 @@
 ```python
     # загружаем данные из файла data.json
     data = db_session.query(User).all()
-    ```
+```
 
 Данные из файла? WAT?
 
@@ -85,7 +85,7 @@
 
  ```python
     inv(strain_tensor) - rigidity.T  # правый случай 
-    ```
+```
 
 Правый, правда? Ну, теперь всё понятно.
 
