@@ -191,13 +191,7 @@
 Понятным – это когда с первого взгляда понятно, что он делает:
 
 
-
-
     :::python
-
-
-    :::python
-
     credentials = load_oauth_credentials_from_file('fb_creds.json')
     fb_api = get_facebook_api(credentials)
     messages = fb_api.get_unread_messages()
