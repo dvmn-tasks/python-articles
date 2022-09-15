@@ -5,31 +5,40 @@
 
 Раньше в C++ итерация по коллекции проходила так:
 
+```cpp
     for(int i = 0; i < books_amount; i++) {
         cout << books[i];
     }
+```
 
 Этот же способ используется в других языках. Поэтому на Питоне хочется написать так же:
 
+```python
     for i in len(books):
         print(books[i])
+```
 
 Это неудобная дичь, древность и вообще. Вот как надо:
 
+```python
     for book in books:
         print(book)
+```
 
 Часто вместе с элементом нужен его номер. Памятуя, что можно итерировать по коллекции, хочется сделать как-то так:
 
+```python
     i = 0 
     for book in books:
         print(i, book)
         i += 1
-
+```
 Это тоже неудобная дичь, древность и вообще. Для этого есть встроенная функция `enumerate`:
 
+```python
     for book_number, book in enumerate(books):
         print(book_number, book)
+```
 
 Делай правильно и не делай неправильно.
 
@@ -43,6 +52,7 @@
 
 Для "ничего" в Питоне есть `None`. Не пустая строка и не -1, а именно `None`:
 
+```python
     try:
         latitude = float(input('Введите широту: '))
     except ValueError:
@@ -50,6 +60,7 @@
     
     if latitude is None:
         print('wtf, dude?')
+```
 
 Обрати внимание на то, как проверяется, находится ли в переменной `None`: `if latitude is None`.
 Не `if latitude == None` и не `if latitude`. Это важно.
@@ -59,40 +70,45 @@
 
 Загрузим json из файла:
 
+```python
     def load_json_data(filepath):
         with open(filepath, 'r') as file_handler:
             return json.load(file_handler)
+```
 
 Всё сломается, если передать путь до несуществующего файла. Исправим:
 
+```python
     def load_json_data(filepath):
         if os.path.exists(filepath):
             with open(filepath, 'r') as file_handler:
                 return json.load(file_handler)
         else:
             return None
-
+```
 Первый секрет: если функция ничего не возвращает, то она возвращает `None`. Поэтому писать `return None` в конце
  функции смысла нет.
 Избавляемся от `else`:
 
+```python
     def load_json_data(filepath):
         if os.path.exists(filepath):
             with open(filepath, 'r') as file_handler:
                 return json.load(file_handler)
-
+```
 Теперь всё лаконично, но очень связанно, как предложение, в котором, помимо деепричастных оборотов, есть ещё
 несколько уровней подчинений, сложным образом связанных друг с другом и заставляющие держать их все в
 памяти, чтобы понять смысл, пусть и простой.
 
 Упростить можно так:
 
+```python
     def load_json_data(filepath):
         if not os.path.exists(filepath):
             return None
         with open(filepath, 'r') as file_handler:
             return json.load(file_handler)
-
+```
 Теперь стало проще: меньше вложенности, просто читать. Меньше багов.
 
 ### Используй превращение типов в bool
@@ -100,21 +116,25 @@
 Часто в коде приходится проверять переменные на нулевые значения.
 Например, пустой список:
 
+```python
     if len(users) == 0:
         pass
-
+```
 Или пустая строка:
 
+```python
     if user.email == '':
         pass
-
+```
 Или ноль:
 
+```python
     if user.level == 0:
         pass
-
+```
 Все три примера выше – неверные. Вот их верные аналоги:
 
+```python
     if not users:
         pass
     
@@ -123,7 +143,7 @@
 
     if not user.level:
         pass
-
+```
 Дело в том, что любое условное выражение неявно конвертируется в boolean. Для каждого типа правила конвертации свои.
 Например, любая строка превратится в `True`, кроме пустой. Любое число – тоже `True`, кроме нуля.
 Подробнее в [документации](https://docs.python.org/3.5/library/stdtypes.html#truth).
@@ -161,8 +181,12 @@
 а во втором какой-нибудь `user` или `book`, в зависимости от того, что в списке. Длинные названия – не проблема,
 у всех давно есть автокомплит.
 - **на английском**: никаких `kniga` или `polsovatel`. Брр.
+<<<<<<< HEAD
 - **грамотными**: не поленись открыть переводчик и гугл, чтобы подобрать правильный перевод. Неправильный перевод
 создаёт ощущение неряшливости, а может и смыслу навредить – тогда о читаемости не может быть и речи.
+=======
+- **уникальными**: в Питоне есть [встроенные функции](https://docs.python.org/3.5/library/functions.html),
+называть переменные их именами нельзя: тогда функция станет недоступна. Среди них есть file, dict, all, str.
 
 
 ### Больше функций
@@ -171,11 +195,12 @@
 
 Понятным – это когда с первого взгляда понятно, что он делает:
 
+```python
     credentials = load_oauth_credentials_from_file('fb_creds.json')
     fb_api = get_facebook_api(credentials)
     messages = fb_api.get_unread_messages()
     send_notifications_to_slack(messages=messages, user='ilebedev')
-
+```
 Сперва из файла загружаются ключи доступа к АПИ Фейсбука, потом создаётся объект для взаимодействия
 с АПИ и получаются непрочитанные сообщение. Эти сообщения отправляются в Слак пользователю ilebedev.
 
