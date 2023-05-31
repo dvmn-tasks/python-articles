@@ -3,24 +3,24 @@
 ### Обычные комментарии
 
 Комментарии – способ прокомментировать код на ходу, на той же строке. 
-```python
-price = Column(BigInteger)  # рубли * 100
-```
+
+    price = Column(BigInteger)  # рубли * 100
+
 
 ### Докстринги
 
 Докстринг – строковая переменная, которая идёт сразу за объявлением функции, класса, метода или модуля.
 Она нужна для документирования всей функции: описания входящих параметров, результата, логики, крайних случаев.
 Заключается в тройные двойные кавычки. Вот так:
-```python
-def tensorsolve(a, b, axes=None):
-    """
-    Solve the tensor equation ``a x = b`` for x.
-    It is assumed that all indices of `x` are summed over in the product,
-    together with the rightmost indices of `a`, as is done in, for example,
-    ``tensordot(a, x, axes=len(b.shape))``.
-    """
-```
+
+    def tensorsolve(a, b, axes=None):
+        """
+        Solve the tensor equation ``a x = b`` for x.
+        It is assumed that all indices of `x` are summed over in the product,
+        together with the rightmost indices of `a`, as is done in, for example,
+        ``tensordot(a, x, axes=len(b.shape))``.
+        """
+
 В серьёзных проектах из них часто генерируется документация, поэтому они могут быть большими, по несколько экранов.
 Это касается проектов, у которых есть документация для разработчиков: Django, numpy, sqlalchemy.
 
@@ -39,29 +39,29 @@ def tensorsolve(a, b, axes=None):
 Самая частая ошибка, связанная с комментариями: дублирование информации.
 В таком случае комментарий не несёт дополнительной информации, а просто переводит соседний код
 с Питона на русский/английский. Пример:
-```python
-# загружаем данные из файла data.json
-with open('users.json', 'r') as handler:
-    data = json.load(handler)
-```
+
+    # загружаем данные из файла data.json
+    with open('users.json', 'r') as handler:
+        data = json.load(handler)
+
 Вот как можно исправить:
-```python
-with open('users.json', 'r') as handler:
-    data = json.load(handler)
-```
+
+    with open('users.json', 'r') as handler:
+        data = json.load(handler)
+
 А так – ещё лучше:
-```python
-data = load_all_users_from_file()
-```
+
+    data = load_all_users_from_file()
+
 
 ### Не сопровождать комментарии
 
 Другая частая ошибка: не менять комментарии при изменении кода. В примере выше мы загружали данные из файла. 
 Через месяц взялись за голову и поселили данные в базе данных. Код стал таким:
-```python
-# загружаем данные из файла data.json
-data = db_session.query(User).all()
-```
+
+    # загружаем данные из файла data.json
+    data = db_session.query(User).all()
+
 Данные из файла? WAT?
 
 
@@ -70,9 +70,9 @@ data = db_session.query(User).all()
 Когда программист пишет кусок кода, он глубоко в него погружён: держит в голове все детали, связи и особые случаи.
 В таком состоянии всё поведение кажется понятным, поэтому разработчик может оставить комментарий самому себе.
 Проблема в том, что когда он переключится на другую задачу и забудет про детали, комментарий может взорвать мозг:
-```python
-inv(strain_tensor) - rigidity.T  # правый случай
-```
+
+    inv(strain_tensor) - rigidity.T  # правый случай
+
 Правый, правда? Ну, теперь всё понятно.
 
 
