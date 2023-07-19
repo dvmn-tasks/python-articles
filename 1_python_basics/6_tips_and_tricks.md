@@ -4,30 +4,35 @@
 ### Итерируй сразу по коллекции, а не по индексам
 
 Раньше в C++ итерация по коллекции проходила так:
-
+    
+    :::cpp
     for(int i = 0; i < books_amount; i++) {
         cout << books[i];
     }
 
 Этот же способ используется в других языках. Поэтому на Питоне хочется написать так же:
-
+    
+    :::python
     for i in len(books):
         print(books[i])
 
 Это неудобная дичь, древность и вообще. Вот как надо:
-
+    
+    :::python
     for book in books:
         print(book)
 
 Часто вместе с элементом нужен его номер. Памятуя, что можно итерировать по коллекции, хочется сделать как-то так:
-
+    
+    :::python
     i = 0 
     for book in books:
         print(i, book)
         i += 1
 
 Это тоже неудобная дичь, древность и вообще. Для этого есть встроенная функция `enumerate`:
-
+    
+    :::python
     for book_number, book in enumerate(books):
         print(book_number, book)
 
@@ -42,7 +47,8 @@
 В этом случае переменную с данными нужно чем-то заполнить, но со смыслом, типа, "тут ничего нет".
 
 Для "ничего" в Питоне есть `None`. Не пустая строка и не -1, а именно `None`:
-
+    
+    :::python
     try:
         latitude = float(input('Введите широту: '))
     except ValueError:
@@ -58,13 +64,15 @@
 ### Меньше вложенности
 
 Загрузим json из файла:
-
+    
+    :::python
     def load_json_data(filepath):
         with open(filepath, 'r') as file_handler:
             return json.load(file_handler)
 
 Всё сломается, если передать путь до несуществующего файла. Исправим:
-
+    
+    :::python
     def load_json_data(filepath):
         if os.path.exists(filepath):
             with open(filepath, 'r') as file_handler:
@@ -75,7 +83,8 @@
 Первый секрет: если функция ничего не возвращает, то она возвращает `None`. Поэтому писать `return None` в конце
  функции смысла нет.
 Избавляемся от `else`:
-
+    
+    :::python
     def load_json_data(filepath):
         if os.path.exists(filepath):
             with open(filepath, 'r') as file_handler:
@@ -86,7 +95,8 @@
 памяти, чтобы понять смысл, пусть и простой.
 
 Упростить можно так:
-
+    
+    :::python
     def load_json_data(filepath):
         if not os.path.exists(filepath):
             return None
@@ -99,22 +109,26 @@
 
 Часто в коде приходится проверять переменные на нулевые значения.
 Например, пустой список:
-
+    
+    :::python
     if len(users) == 0:
         pass
 
 Или пустая строка:
-
+    
+    :::python
     if user.email == '':
         pass
 
 Или ноль:
-
+    
+    :::python
     if user.level == 0:
         pass
 
 Все три примера выше – неверные. Вот их верные аналоги:
-
+    
+    :::python
     if not users:
         pass
     
@@ -163,6 +177,8 @@
 - **на английском**: никаких `kniga` или `polsovatel`. Брр.
 - **грамотными**: не поленись открыть переводчик и гугл, чтобы подобрать правильный перевод. Неправильный перевод
 создаёт ощущение неряшливости, а может и смыслу навредить – тогда о читаемости не может быть и речи.
+- **уникальными**: в Питоне есть [встроенные функции](https://docs.python.org/3.5/library/functions.html),
+называть переменные их именами нельзя: тогда функция станет недоступна. Среди них есть file, dict, all, str.
 
 
 ### Больше функций
@@ -170,7 +186,8 @@
 Функции нужны, чтобы сделать код понятным и реиспользуемым.
 
 Понятным – это когда с первого взгляда понятно, что он делает:
-
+    
+    :::python
     credentials = load_oauth_credentials_from_file('fb_creds.json')
     fb_api = get_facebook_api(credentials)
     messages = fb_api.get_unread_messages()
