@@ -101,6 +101,7 @@
         print '%s: %s' % (key, value)
     # name: Иван
     # level: 2
+<<<<<<< HEAD
 
 ### Множества
 
@@ -112,3 +113,5 @@
     :::python
     l = [1, 2, 1, 3, 2]
     print(list(set(l)))  # [1, 2, 3]
+=======
+>>>>>>> parent of 3fce190 (Merge branch 'master' into english)
