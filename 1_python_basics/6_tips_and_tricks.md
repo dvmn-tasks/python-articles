@@ -7,43 +7,43 @@
 Раньше в C++ итерация по коллекции проходила так:
 
 
-```cpp
+    :::cpp
     for(int i = 0; i < books_amount; i++) {
         cout << books[i];
     }
-```
+
 Этот же способ используется в других языках. Поэтому на Питоне хочется написать так же:
 
 
-```py
+    :::python
     for i in len(books):
         print(books[i])
-```
+
 
 Это неудобная дичь, древность и вообще. Вот как надо:
 
 
-```py
+    :::python
     for book in books:
         print(book)
-```
+
 
 Часто вместе с элементом нужен его номер. Памятуя, что можно итерировать по коллекции, хочется сделать как-то так:
 
 
-```py
+    :::python
     i = 0 
     for book in books:
         print(i, book)
         i += 1
-```
+
 Это тоже неудобная дичь, древность и вообще. Для этого есть встроенная функция `enumerate`:
 
 
-```py
+    :::python
     for book_number, book in enumerate(books):
         print(book_number, book)
-```
+
 Делай правильно и не делай неправильно.
 
 
@@ -57,7 +57,7 @@
 
 Для "ничего" в Питоне есть `None`. Не пустая строка и не -1, а именно `None`:
 
-```py
+    :::python
     try:
         latitude = float(input('Введите широту: '))
     except ValueError:
@@ -65,7 +65,7 @@
     
     if latitude is None:
         print('wtf, dude?')
-```
+
 
 Обрати внимание на то, как проверяется, находится ли в переменной `None`: `if latitude is None`.
 Не `if latitude == None` и не `if latitude`. Это важно.
@@ -76,33 +76,33 @@
 
 Загрузим json из файла:
 
-```py
+    :::python
     def load_json_data(filepath):
         with open(filepath, 'r') as file_handler:
             return json.load(file_handler)
-```
+
 
 Всё сломается, если передать путь до несуществующего файла. Исправим:
 
-```py
+    :::python
     def load_json_data(filepath):
         if os.path.exists(filepath):
             with open(filepath, 'r') as file_handler:
                 return json.load(file_handler)
         else:
             return None
-```
+
 
 Первый секрет: если функция ничего не возвращает, то она возвращает `None`. Поэтому писать `return None` в конце
  функции смысла нет.
 Избавляемся от `else`:
 
-```py
+    :::python
     def load_json_data(filepath):
         if os.path.exists(filepath):
             with open(filepath, 'r') as file_handler:
                 return json.load(file_handler)
-```
+
 
 Теперь всё лаконично, но очень связанно, как предложение, в котором, помимо деепричастных оборотов, есть ещё
 несколько уровней подчинений, сложным образом связанных друг с другом и заставляющие держать их все в
@@ -111,14 +111,14 @@
 Упростить можно так:
 
 
-```py
+    :::python
 
     def load_json_data(filepath):
         if not os.path.exists(filepath):
             return None
         with open(filepath, 'r') as file_handler:
             return json.load(file_handler)
-```
+
 Теперь стало проще: меньше вложенности, просто читать. Меньше багов.
 
 ### Используй превращение типов в bool
@@ -127,25 +127,25 @@
 Например, пустой список:
 
 
-```py
+    :::python
     if len(users) == 0:
         pass
-```
+
 Или пустая строка:
 
-```py
+    :::python
     if user.email == '':
         pass
-```
+
 Или ноль:
 
-```py
+    :::python
     if user.level == 0:
         pass
-```
+
 Все три примера выше – неверные. Вот их верные аналоги:
 
-```py
+    :::python
     if not users:
         pass
     
@@ -154,7 +154,7 @@
 
     if not user.level:
         pass
-```
+
 
 Дело в том, что любое условное выражение неявно конвертируется в boolean. Для каждого типа правила конвертации свои.
 Например, любая строка превратится в `True`, кроме пустой. Любое число – тоже `True`, кроме нуля.
@@ -204,12 +204,12 @@
 
 Понятным – это когда с первого взгляда понятно, что он делает:
 
-```py
+    :::python
     credentials = load_oauth_credentials_from_file('fb_creds.json')
     fb_api = get_facebook_api(credentials)
     messages = fb_api.get_unread_messages()
     send_notifications_to_slack(messages=messages, user='ilebedev')
-```
+
 
 Сперва из файла загружаются ключи доступа к АПИ Фейсбука, потом создаётся объект для взаимодействия
 с АПИ и получаются непрочитанные сообщение. Эти сообщения отправляются в Слак пользователю ilebedev.
