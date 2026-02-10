@@ -10,7 +10,10 @@
 Раньше в C++ итерация по коллекции проходила так:
 
     :::cpp
+<<<<<<< HEAD
 (Добавил статью про фичи питона)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     for(int i = 0; i < books_amount; i++) {
         cout << books[i];
     }
@@ -18,22 +21,32 @@
 Этот же способ используется в других языках. Поэтому на Питоне хочется написать так же:
 
     :::python
+<<<<<<< HEAD
 (Добавил статью про фичи питона)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     for i in len(books):
         print(books[i])
 
 Это неудобная дичь, древность и вообще. Вот как надо:
 
     :::python
+<<<<<<< HEAD
 (Добавил статью про фичи питона)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     for book in books:
         print(book)
 
 Часто вместе с элементом нужен его номер. Памятуя, что можно итерировать по коллекции, хочется сделать как-то так:
 
+<<<<<<< HEAD
 
     :::python
 (Добавил статью про фичи питона)
+=======
+    :::python
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     i = 0 
     for book in books:
         print(i, book)
@@ -42,7 +55,10 @@
 Это тоже неудобная дичь, древность и вообще. Для этого есть встроенная функция `enumerate`:
 
     :::python
+<<<<<<< HEAD
 (Добавил статью про фичи питона)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     for book_number, book in enumerate(books):
         print(book_number, book)
 
@@ -61,7 +77,10 @@
 Для "ничего" в Питоне есть `None`. Не пустая строка и не -1, а именно `None`:
 
     :::python
+<<<<<<< HEAD
 (Добавил статью про фичи питона)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     try:
         latitude = float(input('Введите широту: '))
     except ValueError:
@@ -82,7 +101,10 @@
 Загрузим json из файла:
 
     :::python
+<<<<<<< HEAD
 (Добавил статью про фичи питона)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     def load_json_data(filepath):
         with open(filepath, 'r') as file_handler:
             return json.load(file_handler)
@@ -90,7 +112,10 @@
 Всё сломается, если передать путь до несуществующего файла. Исправим:
 
     :::python
+<<<<<<< HEAD
 (Добавил статью про фичи питона)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     def load_json_data(filepath):
         if os.path.exists(filepath):
             with open(filepath, 'r') as file_handler:
@@ -103,7 +128,10 @@
 Избавляемся от `else`:
 
     :::python
+<<<<<<< HEAD
 (Добавил статью про фичи питона)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     def load_json_data(filepath):
         if os.path.exists(filepath):
             with open(filepath, 'r') as file_handler:
@@ -116,7 +144,10 @@
 Упростить можно так:
 
     :::python
+<<<<<<< HEAD
 (Добавил статью про фичи питона)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     def load_json_data(filepath):
         if not os.path.exists(filepath):
             return None
@@ -135,28 +166,40 @@
 Например, пустой список:
 
     :::python
+<<<<<<< HEAD
 (Добавил статью про фичи питона)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     if len(users) == 0:
         pass
 
 Или пустая строка:
 
     :::python
+<<<<<<< HEAD
 (Добавил статью про фичи питона)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     if user.email == '':
         pass
 
 Или ноль:
 
     :::python
+<<<<<<< HEAD
 (Добавил статью про фичи питона)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     if user.level == 0:
         pass
 
 Все три примера выше – неверные. Вот их верные аналоги:
 
     :::python
+<<<<<<< HEAD
 (Добавил статью про фичи питона)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     if not users:
         pass
     
@@ -225,7 +268,10 @@
 Понятным – это когда с первого взгляда понятно, что он делает:
 
     :::python
+<<<<<<< HEAD
 (Добавил статью про фичи питона)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     credentials = load_oauth_credentials_from_file('fb_creds.json')
     fb_api = get_facebook_api(credentials)
     messages = fb_api.get_unread_messages()

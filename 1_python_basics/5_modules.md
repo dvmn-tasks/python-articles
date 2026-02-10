@@ -150,7 +150,10 @@
 Это не сложно устроить:
 
     :::python
+<<<<<<< HEAD
 (Добавил текст про модули)
+=======
+>>>>>>> parent of 78cfede (Что это за "python" в начале блоков когда? кажется, они лишние)
     # mod.py
     import sys
     from types import ModuleType
